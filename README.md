@@ -30,7 +30,7 @@ When the React app is created it also creates a `.git` directory and a `.gitigno
 
 ### Creating Header and Footer components
 
-The thing about ReactJS is its division in different and reusable components. To this project some packages are going to be used, to make the styling of the page easier, and focus more on its code, let’s install `react-bootstrap` the Bootstrap 5 components built with React, `bootstrap` the most popular, and `react-icons` icons of popular icon packs.
+The thing about ReactJS is its division in different and reusable components. To this project some packages are going to be used, to make the styling of the page easier, and focus more on its code, let’s install `react-bootstrap` the Bootstrap 5 components built with React, `bootstrap` the most popular frontend toolkit, and `react-icons` icons of popular icon packs.
 
 ```console
 npm i react-bootstrap bootstrap react-icons
