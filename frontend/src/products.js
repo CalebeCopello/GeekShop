@@ -50,7 +50,7 @@ const products = [
     {
         _id: '5',
         name: 'Kokiri Tunic',
-        image: './images/GreenTunic.png',
+        image: '/images/GreenTunic.png',
         description: 'The Kokiri Tunic is the set of clothes that the Kokiri wear. It is a simple leaf-green Tunic that enables no special abilities',
         brand: 'The Legend Of Zelda',
         category: 'Clothing',
