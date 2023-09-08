@@ -76,7 +76,7 @@ So with this when the screen is small, it will take 12 columns, when medium it�
 Now that it’s working fine, it’s time to implement React Router using the node package manager, like this
 ```console
 npm i react-router-dom react-router-bootstrap
-``````
+```
 `react-router-dom` contains bindings for using React Router in web applications, in other words, it’s going to be used to make links directly without loading new pages. The `react-router-bootstrap` allows to use the React Router alongside React Bootstrap.
 
 Let’s add the rating to to products. Again it’s done through the creation of a component. And with the ` react-icons ` it’s possible to render the starts using a condition to add a full, half or open star. 
@@ -93,4 +93,4 @@ const router = createBrowserRouter(
   )
 )
 ```
-Using the Router we get thje path and add a ProductScreen related to its id.
+Using the Router we get the path and add a ProductScreen related to its id.
