@@ -67,7 +67,7 @@ export default products
 ```
 Where there is, an id for the product, the id starts with an underscore because in MongoDB that’s how the object ID is  defined. There’s a name for the product, an image path, a description for it. The brand, in the case of this shop it’s going to be used to set the game franchise. The category of the product: an item or a clothing, for example. The “price” of it, how many products are there in the stock, the rating users gave to it, and to finish how many reviews.
 
-After hard coding some products, it’s time to create the home screen. It’s going to show the products that we have. To doing so we are going to use some Bootstrap to show them in columns and with some responsiveness .
+After hard coding some products, it’s time to create the home screen. It’s going to show the products that we have. To doing so we are going to use some Bootstrap to show them in columns and with some responsiveness.
 ```javascript
 <Col sm={12} md={6} lg={4} xl={3}>
 ```
@@ -79,7 +79,7 @@ npm i react-router-dom react-router-bootstrap
 ```
 `react-router-dom` contains bindings for using React Router in web applications, in other words, it’s going to be used to make links directly without loading new pages. The `react-router-bootstrap` allows to use the React Router alongside React Bootstrap.
 
-Let’s add the rating to to products. Again it’s done through the creation of a component. And with the ` react-icons ` it’s possible to render the starts using a condition to add a full, half or open star. 
+Let’s add the rating to the products. Again it’s done through the creation of a component. And with the ` react-icons ` it’s possible to render the starts using a condition to add a full, half or open star. 
 
 To finish this part, we added the routing for the products in the index.js, like this
 
