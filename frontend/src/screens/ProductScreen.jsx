@@ -25,7 +25,7 @@ const ProductScreen = () => {
                         <ListGroup.Item>
                             <ListGroup.Item>
                                 Descrição: <br/> 
-                                {product.description}
+                                <span>{product.description}</span>
                             </ListGroup.Item>
                         </ListGroup.Item>
                     </ListGroup>
@@ -45,7 +45,7 @@ const ProductScreen = () => {
                                 <Row>
                                     <Col>Situação:</Col>
                                     <Col>
-                                        <strong>{product.countInStock > 0 ? 'Têm no Estoque' : 'Fora de Estoque'}</strong>
+                                        <strong>{product.countInStock > 0 ? 'Em Estoque' : 'Fora de Estoque'}</strong>
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
