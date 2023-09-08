@@ -1,0 +1,24 @@
+{
+  "name": "geekshop",
+  "version": "1.0.0",
+  "description": "An Ecommerce web application using the MERN stack",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CalebeCopello/GeekShop.git"
+  },
+  "keywords": [
+    "ECommerce",
+    "MERN"
+  ],
+  "author": "Calebe S. Copello",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CalebeCopello/GeekShop/issues"
+  },
+  "homepage": "https://github.com/CalebeCopello/GeekShop#readme"
+}
