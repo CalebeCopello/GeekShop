@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/CalebeCopello/GeekShop/issues"
   },
-  "homepage": "https://github.com/CalebeCopello/GeekShop#readme"
+  "homepage": "https://github.com/CalebeCopello/GeekShop#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
