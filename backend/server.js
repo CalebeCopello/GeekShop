@@ -22,4 +22,4 @@ APP.get('/api/products/:id', (req, res) => {
     res.json(product)
 })
 
-APP.listen(PORT, () => console.log(`Server running\nhttp://localhost:${PORT}`))
+APP.listen(PORT, () => console.log(`Backend server running\nhttp://localhost:${PORT}`))
