@@ -2,24 +2,24 @@ import { Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import Rating from "./Rating"
 
-const Product = ({p}) => {
+const Product = ({product}) => {
     return (
         <>
-        <Card className='my-3 p-3 rounded bg-light shadow' style={{ width: '100%', height: '90%' }}>
-            <Link to={`/product/${p._id}`}>
-                <Card.Img src={p.image} variant='top' className="rounded border border-dark bg-white" />
+        <Card className='my-3 p-3 rounded bg-light shadow'>
+            <Link to={`/product/${product._id}`}>
+                <Card.Img src={product.image} variant='top' className="rounded border border-dark bg-white" />
             </Link>
             <Card.Body>
-                <Link to={`/product/${p._id}`}>
+                <Link to={`/product/${product._id}`}>
                     <Card.Title as='div'>
-                        <strong>{p.name}</strong>
+                        <strong>{product.name}</strong>
                     </Card.Title>
                 </Link>
                 <Card.Text as='div'>
-                    <Rating value={p.rating} text={`${p.numReviews} reviews`} />
+                    <Rating value={product.rating} text={`${product.numReviews} reviews`} />
                 </Card.Text>
                 <Card.Text as='h6'>
-                    {p.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })}
+                    {product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })}
                 </Card.Text>
             </Card.Body>
         </Card>
