@@ -1,6 +1,5 @@
 const products = [
     {
-        _id: '1',
         name: 'Portal Gun',
         image: '/images/ApertureScienceHandheldPortalDevicePortal.png',
         description: 'The Aperture Science Handheld Portal Device, originally marketed in the 1950s as an Aperture Science Portable Quantum Tunneling Device, also commonly known as a Portal Gun or by its acronym, "ASHPD", is an experimental tool used to create two portals through which objects can pass. ',
@@ -12,7 +11,6 @@ const products = [
         numReviews: 2,
     },
     {
-        _id: '2',
         name: 'Armor Of The Sun',
         image: '/images/ArmorOfTheSun.png',
         description: 'Chainmail armor and white coat featuring a large rendition of the holy symbol of the sun. The choice of attire of a singular Knight of Sunlight from a previous age. The symbol was painted by the knight himself, but the armor never bore any special power, sacred or otherwise.',
@@ -24,7 +22,6 @@ const products = [
         numReviews: 1,
     },
     {
-        _id: '3',
         name: 'Card Box',
         image: '/images/CardBox.jpg',
         description: 'A cardboard box is an industrially prefabricated box, primarily used for packaging goods and materials. It usually consisted of a thin pasteboard with a corrugated paper center, and was largely composed of recycled paper. Special forces operatives Solid Snake and Raiden, as well as the legendary Big Boss were known to often use a corrugated cardboard box as an infiltration aid.',
@@ -36,7 +33,6 @@ const products = [
         numReviews: 7,
     },
     {
-        _id: '4',
         name: 'Fire Flower',
         image: '/images/FireFlower.png',
         description: 'Fire Flower is a power-up that appears in many games in the Mario series, starting with the original Super Mario Bros. for the NES. They give Mario or any other character that collects one the ability to throw fireballs and also changes their costume\'s colors to reflect their new fiery abilities.',
@@ -48,7 +44,6 @@ const products = [
         numReviews: 7,
     },
     {
-        _id: '5',
         name: 'Kokiri Tunic',
         image: '/images/GreenTunic.png',
         description: 'The Kokiri Tunic is the set of clothes that the Kokiri wear. It is a simple leaf-green Tunic that enables no special abilities',
@@ -60,7 +55,6 @@ const products = [
         numReviews: 7,
     },
     {
-        _id: '6',
         name: 'Hylian Shield',
         image: '/images/HylianShield.png',
         description: 'It is the traditional Shield borne by the Knights of Hyrule ',
@@ -72,7 +66,6 @@ const products = [
         numReviews: 6,
     },
     {
-        _id: '7',
         name: 'Mario Cap',
         image: '/images/MarioCap.png',
         description: 'The Mario Cap (or Mario\'s cap) is an important part of Mario\'s clothing and one of the most iconic clothing items in gaming. The cap is red and has Mario\'s M symbol; he is almost never seen without it in his adventures.',
