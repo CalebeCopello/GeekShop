@@ -97,7 +97,7 @@ Using the Router we get the path and add a ProductScreen related to its id.
 
 ## Developer’s log, Stardate 2309.08
 
-### Setting servers, 
+### Setting servers, Connection Frontend and Backend
 To start today, let’s create our backend. To start, let’s use the command
 
 ```console
@@ -127,3 +127,74 @@ Express is amazing, but every time some change is done, you have to close the se
 npm install -D nodemon concurrently dotenv
 ``` 
 There was a problem, though, while fetching the data from the backend there was a problem. It bugged me for a while to discover why the problem occurred. The problem was with a variable, the ` product.price ` because I was using a function ` toLocaleString ` to convert the number to pt-BR, to make it BRL currency and to add two digits to the end of the number. It was working on HomeScreen.jsx but not on ProductScreen.jsx. Because of course, on HomeScreen.jsx, it sent the variable through a *prop* to Product.jsx, so the variable had a value, whereas in ProductScreen.jsx it was undefined, so the function couldn’t be applied. The solution, although simple, took me a while to solve, I just had to put a ` ? ` after the variable, it is called **Optional chaining**, that ensures that the formatting is only applied when the variable is not null or undefined.
+
+## Developer’s log, Stardate 2309.09
+
+### Getting MongoDB and connecting to it, Creating the model for DB, defining models, testing with sample data
+
+MongoDB used on this project is going to be hosted in its own site, so no need to install it locally.  Although we are going to use MongoDB Compass, a desktop application to easy access your database and make the modifications that are necessary. To finish let’s install the mangoose packages
+```console
+npm i mongoose
+``` 
+After installing the mongoose package we create a configuration file to connect to the DB
+```javascript
+import mongoose from 'mongoose'
+
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI)
+        console.log(`MongoDB Connected: ${conn.connection.host}`)
+    } catch (error) {
+        console.log(`Error: ${error.message}`)
+        process.exit(1)
+    }
+}
+
+export default connectDB
+``` 
+First of all we import it. Then we create a function to connect it, using a try/catch structure in which we first try to connect, if succeeded we console.log a message, otherwise we console.log the error message. And then export it. To finish we have to import it to the server.js and then call it.
+
+Although using a noSQL database, you don’t need to worry about all the types of every entry, but it’s important to have an structure, a schema to the data, like this:
+
+```javascript
+const productSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User",
+    },
+    name: {
+        type: String,
+        required: true,
+    },
+    image: {
+        type: String,
+        required: true,
+    },
+       rating: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    numReviews: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    price: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    countInStock: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+
+}, {
+    timestamps: true,
+})
+``` 
+
+in which the user is defined as a type of ` mongoose.Schema.Types.ObjectId ` that is a built-in Mongoose data type, this will store MongoDB ObjectId values, and the reference is going to be the user schema, and so on. Now it’s time to feed the database with the products that were in the ` products.js ` and create some users with a script ` users.js `. 
