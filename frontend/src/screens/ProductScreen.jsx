@@ -1,12 +1,28 @@
+import { useEffect, useState} from 'react'
 import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import { Row, Col, Image, ListGroup, Card, Button} from 'react-bootstrap'
 import Rating from "../components/Rating"
-import products from "../products"
+import axios from "axios"
+// import products from "../products"
 
 const ProductScreen = () => {
-    const { id: productID } = useParams()
-    const product = products.find((p) => p._id === productID)
+    const [product, setProduct] = useState({})
+
+    const { id: productId } = useParams()
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const { data } = await axios.get(`/api/products/${productId}`)
+            setProduct(data)
+        }
+        fetchProduct()
+    }, [productId])
+
+    
+    // const { id: productID } = useParams()
+    // const product = products.find((p) => p._id === productID)
+
     return (
         <>
             <Link className="btn btn-light my-3" to='/'>Voltar</Link>
@@ -37,7 +53,12 @@ const ProductScreen = () => {
                                 <Row>
                                     <Col>Preço:</Col>
                                     <Col>
-                                        <strong>{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })}</strong>
+                                        <strong>
+                                        {
+                                            // product.price 
+                                            product.price?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }) 
+                                        }
+                                        </strong>
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
