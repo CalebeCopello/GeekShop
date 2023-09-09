@@ -1,12 +1,16 @@
 import express from 'express' // AKA const express = require('express')
 import dotenv from 'dotenv'
 dotenv.config()
+import connectDB from './config/db.js'
 import products from './data/products.js' // since it's my own js module I have to put .js
 
 
 
 //constants
 const PORT = process.env.PORT || 5000 //whenever you want an variable from .env use the prefix process.env.
+
+connectDB()
+
 const APP = express()
 
 APP.get('/', (req, res) => {
