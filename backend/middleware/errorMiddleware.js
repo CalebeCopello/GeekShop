@@ -1,0 +1,23 @@
+const notFound =(req, res, next) => {
+    const error = new Error(`Não encontrado - ${req.originalUrl}`)
+    res.status(404)
+    next(error)
+}
+
+const errorHandler = (err, req, res, next) => {
+    let statusCode = res.statusCode === 200 ? 500 : res.statusCode
+    let message = err.message
+
+    // Mongoose for ObjectID
+    if(err.name === 'CastError' && err.kind === 'ObjectId') {
+        message = `Recurso não encontrado`
+        statusCode = 404
+    }
+
+    res.status(statusCode).json({
+        message,
+        stack: process.env.NODE_ENV === 'production' ? 'wut' : err.stack
+    })
+}
+
+export {notFound, errorHandler}
