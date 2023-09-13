@@ -20,6 +20,10 @@ const CartScreen = () => {
         dispatch(removeFromCart(id))
     }
 
+    const checkoutHandler = () => {
+        navigate('/login?redirect=/shipping')
+    }
+
     return (
         <>
         <Row>
@@ -71,7 +75,7 @@ const CartScreen = () => {
                             {cartItems.reduce((a,i) => a+i.qty * i.price,0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })}
                         </ListGroupItem>
                         <ListGroup.Item>
-                            <Button type='button' className='btn-block' disabled={cartItems.length === 0}>
+                            <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={ checkoutHandler}>
                                 Finalizar Compra
                             </Button>
                         </ListGroup.Item>
