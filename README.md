@@ -198,3 +198,11 @@ const productSchema = new mongoose.Schema({
 ``` 
 
 in which the user is defined as a type of ` mongoose.Schema.Types.ObjectId ` that is a built-in Mongoose data type, this will store MongoDB ObjectId values, and the reference is going to be the user schema, and so on. Now it’s time to feed the database with the products that were in the ` products.js ` and create some users with a script ` users.js `. 
+
+## Developer’s log, Stardate 2309.11
+
+### Error, Shopping Cart
+
+Last day I coded an interesting part of the backend of the shop, but sadly I forgot to save what a had written, so, I am sorry. To sum it up, we installed Redux Toolkit, and created some slices. The Redux Toolkit is going to be used to make the information updated and available to all components inside the application, of course it’s a more complex than this, but it is a roughly sum of it. We also created some middleware to check for any errors. So instead of only fetching the data from the database, we are going to send a request, and see if everything goes fine and then show the info, in the meantime, there will be a loading spinner. 
+
+Now, let’s start to create the shopping cart. First of all let’s create a slice for it. First we added the cart slicer to store the products and quantities throughout the app and the components, and we also added it to the localStorage. 
