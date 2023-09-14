@@ -199,10 +199,28 @@ const productSchema = new mongoose.Schema({
 
 in which the user is defined as a type of ` mongoose.Schema.Types.ObjectId ` that is a built-in Mongoose data type, this will store MongoDB ObjectId values, and the reference is going to be the user schema, and so on. Now it’s time to feed the database with the products that were in the ` products.js ` and create some users with a script ` users.js `. 
 
-## Developer’s log, Stardate 2309.11
+## Developer’s log, Stardate 2309.12
 
 ### Error, Shopping Cart
 
 Last day I coded an interesting part of the backend of the shop, but sadly I forgot to save what a had written, so, I am sorry. To sum it up, we installed Redux Toolkit, and created some slices. The Redux Toolkit is going to be used to make the information updated and available to all components inside the application, of course it’s a more complex than this, but it is a roughly sum of it. We also created some middleware to check for any errors. So instead of only fetching the data from the database, we are going to send a request, and see if everything goes fine and then show the info, in the meantime, there will be a loading spinner. 
 
 Now, let’s start to create the shopping cart. First of all let’s create a slice for it. First we added the cart slicer to store the products and quantities throughout the app and the components, and we also added it to the localStorage. 
+
+## Developer’s log, Stardate 2309.13
+
+### CartScreen, Users routes
+
+The creating of the CartScreen was similar to the others screen components, this time, though, we used the redux information since the beginning. We created a layout with 8 columns of the 12 to the image of the product, its name, price, quantity and an remove from cart button. The other 4 columns where used to create a card with the subtotal of the purchase (without tanking into account the shipping price) and a button to go to the checkout. Both functions ` addToCart ` and ` removeFromCart ` where imported from the ` cartSlice.js `. 
+
+Now it’s time to start the backend structure to make possible to our site to have users. To do so, we have create the same structure we had for products. First we have a controller ` userController.js ` inside it we import our middleware handlers.
+```javascript
+const authUser = asyncHandler(async (req,res) =>{
+    res.send('auth user')
+})
+
+const registerUser = asyncHandler(async (req,res) =>{
+    res.send('register user')
+})
+```
+For example here, we have our authenticate user and our register user controllers.  We import them into our ` userRoutes.js ` in which we are going to use in express to control the routes of the requests ` router.route('/').post(registerUser).get(getUsers) ` for example, it the request is a POST one, the server is going to execute the `  registerUser `, and if it is an GET  the server executes a ` getUsers ` and we finish it putting the routes in our ` server.js `. To test if everything is set correctly, we use Postman to check the routes, we can also create a collection of the requests to further use, with some information.
