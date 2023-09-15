@@ -224,3 +224,33 @@ const registerUser = asyncHandler(async (req,res) =>{
 })
 ```
 For example here, we have our authenticate user and our register user controllers.  We import them into our ` userRoutes.js ` in which we are going to use in express to control the routes of the requests ` router.route('/').post(registerUser).get(getUsers) ` for example, it the request is a POST one, the server is going to execute the `  registerUser `, and if it is an GET  the server executes a ` getUsers ` and we finish it putting the routes in our ` server.js `. To test if everything is set correctly, we use Postman to check the routes, we can also create a collection of the requests to further use, with some information.
+
+## Developer’s log, Stardate 2309.14
+
+###Auth User
+
+In order to get the body information we must add it to our server.js, where we are going to get the raw json and the URL encoded for this we can use
+```javascript
+const APP = express()
+
+APP.use(express.json())
+APP.use(express.urlencoded({extended: true}))
+```
+with this the create a middleware to get the body information needed. So instead pf getting undefined with the request, we get an object with the information. Through this it’s possible to verify in our ` userController.js ` both the user and the password, to both, validate it or throw an error.
+```javascript
+    const { email, password } = req.body
+
+    const user = await User.findOne({ email: email })
+    if(user && (await user.matchPassword(password))) {
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin
+        })
+    } else {
+        res.status(401)
+        throw new Error('E-mail ou password inválido')
+    }
+```
+like this. We get both email and password from the body, then compare, if it’s not the same, we throw the error. After storing the email and user from the body using the destructuring, then we use the function findOne from mongoose created in the ` userModel.js `, in our user schema.  From this same model we use the function matchPassword to check for the password, if both match we can see the information in our database otherwise the send the HTTP status of 401 (Unauthorized) and throw the user an error.
