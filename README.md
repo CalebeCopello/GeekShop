@@ -227,7 +227,7 @@ For example here, we have our authenticate user and our register user controller
 
 ## Developer’s log, Stardate 2309.14
 
-###Auth User
+### Auth User
 
 In order to get the body information we must add it to our server.js, where we are going to get the raw json and the URL encoded for this we can use
 ```javascript
