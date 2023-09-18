@@ -1,5 +1,6 @@
 import express from 'express' // AKA const express = require('express')
 import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser'
 dotenv.config()
 import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
@@ -17,6 +18,9 @@ const APP = express()
 
 APP.use(express.json())
 APP.use(express.urlencoded({extended: true}))
+
+//Cookie parser middleware
+APP.use(cookieParser())
 
 APP.get('/', (req, res) => {
     res.send('API is running...')
