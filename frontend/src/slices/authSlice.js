@@ -11,10 +11,14 @@ const authSlide = createSlice({
         setCredentials: (state,action) => {
             state.userInfo = action.payload
             localStorage.setItem('userInfo', JSON.stringify(action.payload))
+        },
+        logout: (state, action) => {
+            state.userInfo = null
+            localStorage.removeItem('userInfo')
         }
     }
 })
 
-export const { setCredentials } = authSlide.actions
+export const { setCredentials, logout } = authSlide.actions
 
 export default authSlide.reducer
