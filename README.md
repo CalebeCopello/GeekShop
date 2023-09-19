@@ -273,3 +273,40 @@ const token = jwt.sign({ userId: user._id }, a1b2c3 { expiresIn: '30d' })
 
 ```
 first we have our cookie set as a variable with the user, it’s secure key and expire time set. Then we create a respond to create the cookie from the variable token. Now we can create a middleware to parse our cookie.
+
+## Developer’s log, Stardate 2309.19
+
+### Private Routes
+
+To make a Route private, we just have to create a component, for example ` PrivateRoute.jsx ` and then add it 
+```javascript
+import { Outlet, Navigate } from "react-router-dom"
+import { useSelector } from 'react-redux'
+
+const PrivateRoute = () => {
+    const { userInfo } = useSelector(state => state.auth)
+
+    return userInfo ? <Outlet /> : <Navigate to='/login' replace />
+}
+
+export default PrivateRoute
+```
+in our ` index.js ` the file that controls the routes, import it and then create a <Route> element and put the private routes inside it, like this
+```javascript
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element={<App />}>
+      <Route index={true} path='/' element={<HomeScreen />} /> //public routes
+      <Route path='/product/:id' element={<ProductScreen />} />
+      <Route path='/cart' element={<CartScreen />} />
+      <Route path='/login' element={<LoginScreen />} />
+      <Route path='/register' element={<RegisterScreen />} />
+
+
+      <Route path='' element={<PrivateRoute />}>
+        <Route path='/shipping' element={<ShippingScreen />} /> //private routes
+      </Route>
+    </Route>
+  )
+)
+``
