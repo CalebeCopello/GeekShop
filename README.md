@@ -227,7 +227,7 @@ For example here, we have our authenticate user and our register user controller
 
 ## Developer’s log, Stardate 2309.14
 
-### Auth User
+###Auth User
 
 In order to get the body information we must add it to our server.js, where we are going to get the raw json and the URL encoded for this we can use
 ```javascript
@@ -254,3 +254,23 @@ with this the create a middleware to get the body information needed. So instead
     }
 ```
 like this. We get both email and password from the body, then compare, if it’s not the same, we throw the error. After storing the email and user from the body using the destructuring, then we use the function findOne from mongoose created in the ` userModel.js `, in our user schema.  From this same model we use the function matchPassword to check for the password, if both match we can see the information in our database otherwise the send the HTTP status of 401 (Unauthorized) and throw the user an error.
+
+## Developer’s log, Stardate 2309.18
+
+### JWS
+JWS, Jason Web Tokens, is one of the ways of authenticate an user, and it’s an secure way to share information between two parties, like the web server and the client. It’s divided into three parts, a header, a payload and a signature. The header is divided into two parts, the type of token, in our case JWT, and the signing algorithm being used. The payload which contains the claims that are statements about and entity, in this case the user and additional data. The last part is the signature that’1s is the decoding part, it checks if the message hasn’t changed along the way.
+We can set a cookie as a response for a page like this
+```javascript
+
+const token = jwt.sign({ userId: user._id }, a1b2c3 { expiresIn: '30d' })
+
+        res.cookie('jwt', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'strict',
+            maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
+        })
+
+```
+first we have our cookie set as a variable with the user, it’s secure key and expire time set. Then we create a respond to create the cookie from the variable token. Now we can create a middleware to parse our cookie.
+
