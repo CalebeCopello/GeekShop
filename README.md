@@ -273,4 +273,3 @@ const token = jwt.sign({ userId: user._id }, a1b2c3 { expiresIn: '30d' })
 
 ```
 first we have our cookie set as a variable with the user, it’s secure key and expire time set. Then we create a respond to create the cookie from the variable token. Now we can create a middleware to parse our cookie.
-
