@@ -53,7 +53,7 @@ const OrderScreen = () => {
                                         <Image src={item.image} alt={item.name} fluid rounded className="rounded border border-dark bg-white rounded shadow"/>
                                     </Col>
                                     <Col>
-                                        <Link to={`/products/${item.product}`}>{item.name}</Link>
+                                        <Link to={`/product/${item.product}`}>{item.name}</Link>
                                     </Col>
                                     <Col md={6}>
                                         {item.qty} x {item.price?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })} = {(item.qty * item.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })}
