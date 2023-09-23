@@ -309,4 +309,27 @@ const router = createBrowserRouter(
     </Route>
   )
 )
+```
+
+## Developer’s log, Stardate 2309.22
+
+### PayPal integration
+
+First of all, although I didn’t put any entries in the last days doesn’t mean that I didn’t do a thing on the project, but I didn’t think there was some relevant content to post. Anyway, every commerce site wants to sell things and of course get some money from it. This one is not different, and in order to get some money we are going to use PayPal for it. It is very easy to test the API since you get a sandbox environment and the integration seems quite simple. And to integrate it with our shop we can use
+```console
+npm I @paypal/react-paypal-js
+```
+and after it we import its provider, put it inside our ` index.js ` like this
+```javascript
+import { PayPalScriptProvider } from '@paypal/react-paypal-js'
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <PayPalScriptProvider deferLoading={true}>
+        <RouterProvider router={router} />
+        </PayPalScriptProvider>
+    </Provider>
+  </React.StrictMode>
 ``
