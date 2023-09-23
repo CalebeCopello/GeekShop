@@ -7,8 +7,10 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { useProfileMutation } from '../slices/userApiSlice'
 import { setCredentials } from '../slices/authSlice'
+import {useGetMyOrdersQuery} from '../slices/ordersApiSlice'
+import { FaTimes } from 'react-icons/fa'
 
-function ProfileScreen() {
+const ProfileScreen = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -19,6 +21,8 @@ function ProfileScreen() {
     const { userInfo } = useSelector((state) => state.auth)
 
     const [updateProfile, {isLoading:loadingUpdateProfile}] = useProfileMutation()
+
+    const {data: orders, isLoading, error } = useGetMyOrdersQuery()
 
     useEffect(() => {
         if (userInfo) {
@@ -69,7 +73,57 @@ function ProfileScreen() {
                     {loadingUpdateProfile && <Loader />}
                 </Form>
             </Col>
-            <Col md={9}>col</Col>
+            <Col md={9}>
+                <h2>Meus Pedidos</h2>
+                {isLoading ? <Loader />: error ? (
+                    <Message variant='danger'>
+                    {error?.data?.message || error.error}
+                    </Message>
+                ): (
+                    <Table striped hover responsive className='table-sm'>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Data</th>
+                                <th>Total</th>
+                                <th>Pago</th>
+                                <th>Entregue</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                            <tbody>
+                                {orders.map((order) => (
+                                    <tr key={order._id}>
+                                        <td>{order._id}</td>
+                                        <td>{order.createdAt.substring(0,10)}</td>
+                                        <td>{order.totalPrice.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}</td>
+                                        <td>
+                                            {order.isPaid ? (
+                                                order.paidAt.substring(0,10)
+                                            ) : (
+                                                <FaTimes style={{color:'red'}} />
+                                            )}
+                                        </td>
+                                        <td>
+                                            {order.isDelivered ? (
+                                                order.deliveredAt.substring(0,10)
+                                            ) : (
+                                                <FaTimes style={{color:'red'}} />
+                                            )}
+                                        </td>
+                                        <td>
+                                            <LinkContainer to={`/order/${order._id}`}>
+                                                <Button className='btn-sm' variant='light'>
+                                                    Detalhes
+                                                </Button>
+                                            </LinkContainer>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                    </Table>
+                )}
+            </Col>
         </Row>
     )
 }
