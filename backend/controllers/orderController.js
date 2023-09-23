@@ -66,6 +66,19 @@ const updateOrderToPaid = asyncHandler(async (req,res) =>{
             email_address: req.body.payer.email_address,
         }
 
+        // Update countInStock
+    // for (const index in updateOrder.orderItems) {
+        // const item = updateOrder.orderItems[index];
+        //console.log("Item - ", item);
+        // const product = await Product.findById(item.product);
+        //console.log("Product - ", product);
+        // product.countInStock -= item.qty;
+        //console.log("updatedQty - ", product.countInStock);
+        // product.save();
+    // }
+
+        //console.log(updateOrder);
+
         const updatedOrder = await order.save()
 
         res.status(200).json(updatedOrder)
