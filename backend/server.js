@@ -1,3 +1,4 @@
+import path from 'path'
 import express from 'express' // AKA const express = require('express')
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
@@ -7,6 +8,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import productRoutes from './routes/productRoute.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
+import uploadRoutes from './routes/uploadRoutes.js'
 
 //constants
 const PORT = process.env.PORT || 5000 //whenever you want an variable from .env use the prefix process.env.
@@ -30,8 +32,12 @@ APP.get('/', (req, res) => {
 APP.use('/api/products', productRoutes)
 APP.use('/api/users', userRoutes)
 APP.use('/api/orders', orderRoutes)
+APP.use('/api/upload', uploadRoutes)
 
 APP.get('/api/config/paypal', (req, res) => res.send({clientId: process.env.PAYPAL_CLIENT_ID}))
+
+const __dirname = path.resolve()
+APP.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 APP.use(notFound)
 APP.use(errorHandler)
