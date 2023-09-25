@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux'
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
 import Message from "../components/Message"
 import Loader from "../components/Loader"
-import { useGetOrderDetailsQuery, usePayOrderMutation, useGetPayPalClientIdQuery } from "../slices/ordersApiSlice"
+import { useGetOrderDetailsQuery, usePayOrderMutation, useGetPayPalClientIdQuery, useDeliverOrderMutation } from "../slices/ordersApiSlice"
 
 const OrderScreen = () => {
     const { id: orderId } = useParams()
@@ -14,6 +14,8 @@ const OrderScreen = () => {
     const { data: order, refetch, isLoading, error } = useGetOrderDetailsQuery(orderId)
 
     const [payOrder, {isLoading: loadingPay}] = usePayOrderMutation()
+
+    const [deliverOrder, {isLoading: loadingDeliver}] = useDeliverOrderMutation()
 
     const [{isPending}, paypalDispatch] = usePayPalScriptReducer()
 
@@ -73,6 +75,17 @@ const OrderScreen = () => {
         }).then((orderId) => {
             return orderId
         })
+    }
+
+    const deliverOrderHandler = async () => {
+        try {
+            await deliverOrder(orderId)
+            refetch(
+                toast.success('Pedido Entregue')
+            )
+        } catch (err) {
+            toast.error(err?.data?.message || err.message)
+        }
     }
 
     return isLoading ? <Loader /> : error ? <Message variant='danger' /> : (
@@ -163,7 +176,14 @@ const OrderScreen = () => {
                                 )}
                             </ListGroup.Item>
                         )}
-                        {/*TODO: MARK AS DELIVERED PLACEHOLDER */}
+                        {loadingDeliver && <Loader />}
+                        {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                            <ListGroup.Item>
+                                <Button type="button" className="btn btn-block" onClick={deliverOrderHandler}>
+                                    Marcar como Entregue
+                                </Button>
+                            </ListGroup.Item>
+                        )}
                     </ListGroup>
                 </Card>
             </Col>

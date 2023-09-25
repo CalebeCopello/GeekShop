@@ -36,7 +36,7 @@ const OrderListScreen = () => {
                             </td>
                             <td>{order.totalPrice.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
                             <td>
-                            {order.isDelivered ? (order.Delivered.substring(0,10)) : (<FaTimes style={{ color: 'red' }} />)}
+                            {order.isDelivered ? (order.deliveredAt.substring(0,10)) : (<FaTimes style={{ color: 'red' }} />)}
                             </td>
                             <td>
                                 <LinkContainer to={`/order/${order._id}`}>
