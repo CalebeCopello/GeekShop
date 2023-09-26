@@ -11,7 +11,7 @@ const ProductListScreen = () => {
 
     const [createProduct, {isLoading: loadingCreate}] = useCreateProductMutation()
 
-    const [deleteProduct, {isLoading: loadingDelete}] = useCreateProductMutation()
+    const [deleteProduct, {isLoading: loadingDelete}] = useDeleteProductMutation()
 
     const deleteHandler = async (id) => {
         if (window.confirm('Você realmente quer deletar esse produto?')) {
