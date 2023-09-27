@@ -17,7 +17,7 @@ const Rating = ({value, text}) => {
                     {value > 4 ? <FaStar /> : value >= 3.5 ? <FaStarHalfAlt /> : <FaRegStar /> }
                 </span>
                 <span>
-                    {value > 5 ? <FaStar /> : value >= 4.5 ? <FaStarHalfAlt /> : <FaRegStar /> }
+                    {value >= 5 ? <FaStar /> : value >= 4.5 ? <FaStarHalfAlt /> : <FaRegStar /> }
                 </span>
                 <span className='rating-text'>
                     {text && text}
