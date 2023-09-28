@@ -5,6 +5,7 @@ import Loader from "../components/Loader"
 import Message from "../components/Message"
 import { useGetProductsQuery } from '../slices/productsApiSlice.js'
 import Paginate from "../components/Paginate"
+import ProductCarousel from "../components/ProductCarousel"
 
 
 const HomeScreen = () => {
@@ -13,7 +14,7 @@ const HomeScreen = () => {
     const { data, isLoading, error } = useGetProductsQuery({pageNumber, keyword})
     return(
         <>
-        {keyword && (<Link to='/' className='btn btn-light mb-4'>Voltar</Link>)}
+        {!keyword ? <ProductCarousel /> : (<Link to='/' className='btn btn-light mb-4'>Voltar</Link>)}
         {isLoading ? (<Loader />) : error ? (<Message variant='danger'>{error?.data?.message || error.error }</Message>) : (<>
                 <h1>Últimos Produtos</h1>
                 <Row>
