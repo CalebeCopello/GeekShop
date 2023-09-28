@@ -8,12 +8,15 @@ const ProductCarousel = () => {
     const {data: products, isLoading, error} = useGetTopProductsQuery()
 
     return (
-    isLoading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
+        <>
+    {isLoading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
         <Carousel pause='hover' className='bg-primary mb-4'>
             {products.map((p) => (
                 <Carousel.Item key={p._id}>
                     <Link to={`/product/${p._id}`}>
-                        <Image src={p.image} alt={p.name} fluid style={{backgroundColor: 'white', alignContent: 'center'}} />
+                        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+                        <Image src={p.image} alt={p.name} fluid style={{backgroundColor: 'white'}}/>
+                        </div>
                         <Carousel.Caption className='carrousel-caption'>
                             <h2>{p.name} ({p.price?.toLocaleString('pt-bt', {style:'currency', currency:'BRL'})})</h2>
                         </Carousel.Caption>
@@ -22,6 +25,8 @@ const ProductCarousel = () => {
             ))}
         </Carousel> 
     )
+    }
+    </>
     )
 }
 
