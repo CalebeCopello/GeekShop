@@ -25,9 +25,6 @@ APP.use(express.urlencoded({extended: true}))
 //Cookie parser middleware
 APP.use(cookieParser())
 
-APP.get('/', (req, res) => {
-    res.send('API is running...')
-})
 
 APP.use('/api/products', productRoutes)
 APP.use('/api/users', userRoutes)
