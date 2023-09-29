@@ -39,6 +39,16 @@ APP.get('/api/config/paypal', (req, res) => res.send({clientId: process.env.PAYP
 const __dirname = path.resolve()
 APP.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
+if(process.env.NODE_ENV === 'production') {
+    APP.use(express.static(path.join(__dirname, '/frontend/build')))
+
+    APP.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html')))
+} else {
+    APP.get('/', (req, res) => {
+        res.send('API is running...')
+    })
+}
+
 APP.use(notFound)
 APP.use(errorHandler)
 
