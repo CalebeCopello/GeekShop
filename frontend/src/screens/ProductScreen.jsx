@@ -9,6 +9,7 @@ import Loader from "../components/Loader"
 import Message from "../components/Message"
 import { addToCart } from "../slices/cartSlice.js"
 import { toast } from 'react-toastify'
+import Meta from "../components/Meta"
 
 
 const ProductScreen = () => {
@@ -56,6 +57,7 @@ const ProductScreen = () => {
                 <Loader />
             ) : error ? (<Message variant='danger'>{error?.data?.message || error.error }</Message>) : (
             <>
+                <Meta title={product.name}/>
                     <Row>
                     <Col md={5}>
                         <Image src={product.image} alt={product.name} fluid className="rounded border border-dark bg-white rounded shadow" />
@@ -103,7 +105,7 @@ const ProductScreen = () => {
                                 {product.countInStock > 0 && (
                                     <ListGroup.Item>
                                         <Row>
-                                            <Col>Qunatidade</Col>
+                                            <Col>Quantidade</Col>
                                             <Col>
                                                 <Form.Control as='select' value={qty} onChange={(e) => setQty(Number(e.target.value))}>
                                                     {[...Array(product.countInStock).keys()].map((x) => (

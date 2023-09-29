@@ -95,6 +95,7 @@ const ProductEditScreen = () => {
                     <Form.Control type='text' placeholder='Imagem URL' value={image} onChange={(e) => setImage}></Form.Control>
                     <Form.Control type='file' label='Escolha o Arquivo' onChange={uploadFileHandler}></Form.Control>
                 </Form.Group>
+                {loadingUpload && <Loader />}
                 <Form.Group controlId='brand' className='my-2'>
                     <Form.Label>Marca</Form.Label>
                     <Form.Control type='text' placeholder='Marca do Produto' value={brand} onChange={(e) => setBrand(e.target.value)}></Form.Control>
